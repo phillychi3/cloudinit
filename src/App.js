@@ -4,20 +4,18 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <img id='mianbg' src="https://cdn.discordapp.com/attachments/1005190123073318923/1099345993587232913/CTEC_Sort.png" className="App-logo" alt="logo" />
+      <div class="dontclickimage" id="dontclickimage"></div>
+      <div class="search-thing" id="search-thing">
+        <input type="text" placeholder="Search for a game" />
+        <div class="search-button" id="search-button">
+
+        </div>
+        <div id="change-search-button">
+
+        </div>
+
+      </div>
     </div>
   );
 }
