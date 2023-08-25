@@ -1,27 +1,32 @@
 import Search from "./things/search.js";
-import './App.css';
+import "./App.css";
 import RGL, { WidthProvider } from "react-grid-layout";
-import {React} from "react";
+import { React } from "react";
 
 const ReactGridLayout = WidthProvider(RGL);
 
-
 function App() {
-
-  const things = [
-    Search,
-  ]
-
-
+  const things = [Search];
 
   const generateLayout = () => {
-    return things.map((key, index) => ({
+    const lays = things.map((key, index) => ({
       i: key.name, // 使用 key.name 設定 i 的值
       x: index * 2,
       y: 0,
       w: 2,
       h: 2,
     }));
+    lays.forEach((lay) => {
+      const local = localStorage.getItem(lay.i);
+      console.log(local);
+      if (local) {
+        lay.x = parseInt(local.split(",")[0]);
+        lay.y = parseInt(local.split(",")[1]);
+      } else {
+        localStorage.setItem(lay.i, [lay.x, lay.y]);
+      }
+    });
+    return lays
   };
 
   const layouts = generateLayout();
@@ -34,7 +39,7 @@ function App() {
   };
 
   const componentsMap = generateComponentsMap();
-console.log(componentsMap);
+  console.log(componentsMap);
   const generateElements = () => {
     return things.map((key) => {
       const Component = componentsMap[key.name]; // 使用 key.name 取得對應組件
@@ -43,21 +48,32 @@ console.log(componentsMap);
   };
 
   const elements = generateElements();
+
+  const onLayoutChange = (layout) => {
+    layout.forEach((lay) => {
+      localStorage.setItem(lay.i, [lay.x, lay.y]);
+    });
+  }
+
   return (
     <div className="App">
-      <img id='mianbg' src="https://cdn.discordapp.com/attachments/1005190123073318923/1099345993587232913/CTEC_Sort.png" className="App-logo" alt="logo" />
+      <img
+        id="mianbg"
+        src="https://cdn.discordapp.com/attachments/1005190123073318923/1099345993587232913/CTEC_Sort.png"
+        className="App-logo"
+        alt="logo"
+      />
       <div class="dontclickimage" id="dontclickimage"></div>
       <ReactGridLayout
         className="layout"
         layout={layouts}
         breakpoints={1200}
-        cols={12} 
+        cols={12}
         verticalCompact={false}
+        onLayoutChange={onLayoutChange}
       >
-
-      {elements}
+        {elements}
       </ReactGridLayout>
-      
     </div>
   );
 }
