@@ -51,6 +51,29 @@
   color: transparent;
 }
 
+.setting {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+
+}
+
+.setting-button{
+  width: 50%;
+}
+
+.setting-button-circle {
+  width: 100%;
+  height:0;
+  padding-bottom: 100%;
+  border-radius: 50%;
+  border:10px solid #cfdcec;
+  overflow:hidden;
+        
+  background: #4679BD; 
+  box-shadow: 0 0 3px gray;
+}
+
 img {
   overflow: clip;
   overflow-clip-margin: content-box;

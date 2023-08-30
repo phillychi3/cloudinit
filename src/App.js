@@ -2,7 +2,7 @@ import Search from "./things/search.js";
 import "./App.css";
 import RGL, { WidthProvider } from "react-grid-layout";
 import { React } from "react";
-
+import Setting from "./pages/setting.js"
 const ReactGridLayout = WidthProvider(RGL);
 
 function App() {
@@ -64,6 +64,7 @@ function App() {
         alt="logo"
       />
       <div class="dontclickimage" id="dontclickimage"></div>
+      <Setting />
       <ReactGridLayout
         className="layout"
         layout={layouts}
@@ -74,6 +75,7 @@ function App() {
       >
         {elements}
       </ReactGridLayout>
+      
     </div>
   );
 }
