@@ -1,12 +1,13 @@
 import './App.css'
+import Search from './components/Search.jsx'
 
 function App() {
 
   return (
     <>
-      <p className="read-the-docs">
-        no
-      </p>
+      <div className='App'>
+        <Search />
+      </div>
     </>
   )
 }
