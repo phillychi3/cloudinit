@@ -1,6 +1,7 @@
 import './App.sass'
 import Search from './components/Search'
 import Card from './components/Card'
+import time from './components/cardtool/Time'
 
 function App() {
   return (
@@ -28,18 +29,25 @@ function App() {
           <Card
             element={
               <div>
+                <h1>HiHiHiHiHiHi</h1>
                 <h1>Hi</h1>
                 <h1>Hi</h1>
                 <h1>Hi</h1>
-                <h1>Hi</h1>
-                <h1>Hi</h1>
-                <h1>Hi</h1>
+              </div>
+            }
+          />
+          <Card
+            element={
+              <div>
                 <h1>Hi</h1>
                 <h1>Hi</h1>
                 <h1>Hi</h1>
                 <h1>Hi</h1>
               </div>
             }
+          />
+          <Card
+            element={time()}
           />
         </div>
       </div>
