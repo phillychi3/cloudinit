@@ -3,6 +3,7 @@ import Search from './components/Search'
 import Card from './components/Card'
 import time from './components/cardtool/Time'
 import weather from './components/cardtool/Weather'
+import rrypto from './components/cardtool/Crypto'
 
 function App() {
   return (
@@ -21,6 +22,9 @@ function App() {
           />
           <Card
             element={weather()}
+          />
+          <Card
+            element={rrypto()}
           />
         </div>
       </div>
