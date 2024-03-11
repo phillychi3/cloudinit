@@ -1,5 +1,5 @@
 import useOkxTicker from '../../hooks/useokx'
-
+import Svg from './Loading'
 const Crypto = () => {
   const ticker = useOkxTicker('btcusdt')
 
@@ -7,10 +7,10 @@ const Crypto = () => {
     <div className="weather">
       {ticker ? (
         <div>
-          <p>最新成交價：{ticker.p}</p>
+          <p>最新成交價：{parseInt(ticker.p).toFixed(1)}</p>
         </div>
       ) : (
-        'Loading...'
+        <Svg/>
       )}
     </div>
   )

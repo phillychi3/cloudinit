@@ -1,6 +1,6 @@
 import useLocation from '../../hooks/uselocation'
 import useWeather from '../../hooks/useweather'
-
+import Svg from './Loading'
 const Weathercard = (data) => {
   return (
     <div className="weather-card">
@@ -45,7 +45,7 @@ const Weather = () => {
   return (
     <div className="weather">
       {weather.loading ? (
-        'Loading...'
+        <Svg />
       ) : weather.error ? (
         weather.error
       ) : (
