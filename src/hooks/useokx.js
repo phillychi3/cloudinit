@@ -33,7 +33,9 @@ const useBinanceTicker = (instId) => {
     }
 
     return () => {
-      socket.close()
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.close()
+      }
     }
   }, [instId])
 

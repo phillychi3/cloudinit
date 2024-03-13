@@ -2,6 +2,7 @@ import useBinanceTicker from '../../hooks/useokx'
 import Svg from './Loading'
 import Card from '../Card'
 import { useRef, useEffect, useState } from 'react'
+import PropTypes from 'prop-types'
 
 const Crypto = ({coin}) => {
   const ticker = useBinanceTicker(coin)
@@ -35,7 +36,7 @@ const Crypto = ({coin}) => {
   )
 }
 Crypto.propTypes = {
-  coin: 'string'
+  coin: PropTypes.string
 }
 
 export default Crypto
