@@ -3,6 +3,7 @@ import Search from './components/Search'
 import Time from './components/cardtool/Time'
 import Weather from './components/cardtool/Weather'
 import Crypto from './components/cardtool/Crypto'
+import Setting from './components/Setting'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         alt="background"
       />
       <div className="mask"></div>
+      <Setting />
       <div className="App">
         <Search />
         <div className="cards">
