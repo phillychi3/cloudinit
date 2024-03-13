@@ -26,23 +26,25 @@ export default function useWeather(location) {
     }
     let rtdata = {}
     for (let day in days) {
-      const { max, min, rain } = days[day].reduce((acc, curr) => {
-        return {
-          max: Math.max(acc.max, curr.main.temp_max),
-          min: Math.min(acc.min, curr.main.temp_min),
-          rain: acc.rain + curr.pop*100,
-        };
-      }, { max: -100, min: 100, rain: 0});
+      const { max, min, rain } = days[day].reduce(
+        (acc, curr) => {
+          return {
+            max: Math.max(acc.max, curr.main.temp_max),
+            min: Math.min(acc.min, curr.main.temp_min),
+            rain: acc.rain + curr.pop * 100
+          }
+        },
+        { max: -100, min: 100, rain: 0 }
+      )
 
       rtdata[day] = {
         max: max.toFixed(1),
         min: min.toFixed(1),
         rain: (rain / days[day].length).toFixed(1),
-        icon: days[day][0].weather[0].icon,
-      };
+        icon: days[day][0].weather[0].icon
+      }
     }
     return rtdata
-
   }
   React.useEffect(() => {
     const success = (forecast, weather) => {
@@ -60,8 +62,7 @@ export default function useWeather(location) {
       }
       try {
         forecast = processdate(forecast)
-      }
-      catch (e) {
+      } catch (e) {
         setState((s) => ({
           ...s,
           loading: false,
@@ -72,7 +73,7 @@ export default function useWeather(location) {
       setState({
         loading: false,
         weather: weather,
-        forecast: forecast,
+        forecast: forecast
       })
     }
     const efrror = (error) => {

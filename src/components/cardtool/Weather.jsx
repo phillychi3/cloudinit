@@ -1,6 +1,7 @@
 import useLocation from '../../hooks/uselocation'
 import useWeather from '../../hooks/useweather'
 import Svg from './Loading'
+import Card from '../Card'
 const Weathercard = (data) => {
   return (
     <div className="weather-card">
@@ -19,7 +20,7 @@ const Weathercard = (data) => {
       <div className="weather-forecast">
         {Object.keys(data.forecast).map((day) => (
           <div key={day} className="weather-forecast-day">
-            <div className='weather-day'>
+            <div className="weather-day">
               <span>{day}</span>
               <img
                 src={`http://openweathermap.org/img/wn/${data.forecast[day].icon}.png`}
@@ -31,8 +32,7 @@ const Weathercard = (data) => {
               <span>降雨機率 {data.forecast[day].rain}%</span>
             </div>
           </div>
-        ))
-        }
+        ))}
       </div>
     </div>
   )
@@ -43,15 +43,19 @@ const Weather = () => {
   const weather = useWeather(state)
 
   return (
-    <div className="weather">
-      {weather.loading ? (
-        <Svg />
-      ) : weather.error ? (
-        weather.error
-      ) : (
-        <Weathercard {...weather} />
-      )}
-    </div>
+    <Card
+      element={
+        <div className="weather">
+          {weather.loading ? (
+            <Svg />
+          ) : weather.error ? (
+            weather.error
+          ) : (
+            <Weathercard {...weather} />
+          )}
+        </div>
+      }
+    />
   )
 }
 export default Weather

@@ -4,7 +4,7 @@ import Card from '../Card'
 import { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Crypto = ({coin}) => {
+const Crypto = ({ coin }) => {
   const ticker = useBinanceTicker(coin)
   const lastPrice = useRef()
   const [color, setColor] = useState('none')

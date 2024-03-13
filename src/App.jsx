@@ -1,8 +1,7 @@
 import './App.sass'
 import Search from './components/Search'
-import Card from './components/Card'
-import time from './components/cardtool/Time'
-import weather from './components/cardtool/Weather'
+import Time from './components/cardtool/Time'
+import Weather from './components/cardtool/Weather'
 import Crypto from './components/cardtool/Crypto'
 
 function App() {
@@ -17,15 +16,9 @@ function App() {
       <div className="App">
         <Search />
         <div className="cards">
-          <Card
-            element={time()}
-          />
-          <Card
-            element={weather()}
-          />
-          <Crypto
-            coin="btcusdt"
-          />
+          <Time />
+          <Weather />
+          <Crypto coin="btcusdt" />
         </div>
       </div>
     </>

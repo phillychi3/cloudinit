@@ -1,16 +1,22 @@
 import PropTypes from 'prop-types'
-import  { useEffect, useState } from 'react'
-const Card = ({ element,color }) => {
-  const [backgroundColor, setBackgroundColor] = useState('#ecf0f1');
+import { useEffect, useState } from 'react'
+const Card = ({ element, color }) => {
+  const [backgroundColor, setBackgroundColor] = useState('#ecf0f1')
 
   useEffect(() => {
     if (color) {
-      setBackgroundColor(color);
+      setBackgroundColor(color)
     }
-  }, [color]);
+  }, [color])
 
   return (
-    <div className="card" style={{borderColor:backgroundColor,borderStyle:color?"solid":"none"}}>
+    <div
+      className="card"
+      style={{
+        borderColor: backgroundColor,
+        borderStyle: color ? 'solid' : 'none'
+      }}
+    >
       <div className="card-content">{element}</div>
     </div>
   )
