@@ -4,7 +4,8 @@ import Card from '../Card'
 import { useRef, useEffect, useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Crypto = ({ coin }) => {
+const Crypto = ({ index }) => {
+  const coin = JSON.parse(localStorage.getItem('setting')).cards[index].coin
   const ticker = useBinanceTicker(coin)
   const lastPrice = useRef()
   const [color, setColor] = useState('none')
@@ -36,7 +37,7 @@ const Crypto = ({ coin }) => {
   )
 }
 Crypto.propTypes = {
-  coin: PropTypes.string
+  index: PropTypes.number
 }
 
 export default Crypto
