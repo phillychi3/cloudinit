@@ -29,6 +29,9 @@ const Setting = () => {
     setting.cards.push(Cards[card])
     console.log(setting)
     localStorage.setItem('setting', JSON.stringify(setting))
+    window.dispatchEvent(
+      new StorageEvent('storage', { key: 'card', ...setting.cards })
+    )
   }
 
   function closeModal() {
