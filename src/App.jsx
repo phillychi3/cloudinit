@@ -33,7 +33,7 @@ function App() {
     <>
       <img
         id="bg"
-        src="https://wallpapers.com/images/hd/minimalist-purple-sky-and-mountain-ex4suuw5xd4funov.jpg"
+        src={storecard.background}
         alt="background"
       />
       <div className="mask"></div>
