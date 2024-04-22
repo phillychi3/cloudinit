@@ -33,7 +33,7 @@ function App() {
     <>
       <img
         id="bg"
-        src={storecard.background}
+        src={JSON.parse(storecard).background}
         alt="background"
       />
       <div className="mask"></div>
