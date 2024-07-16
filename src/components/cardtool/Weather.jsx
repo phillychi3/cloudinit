@@ -2,6 +2,7 @@ import useLocation from '../../hooks/uselocation'
 import useWeather from '../../hooks/useweather'
 import Svg from './Loading'
 import Card from '../Card'
+import PropTypes from 'prop-types'
 const Weathercard = (data) => {
   return (
     <div className="weather-card">
@@ -38,7 +39,7 @@ const Weathercard = (data) => {
   )
 }
 
-const Weather = () => {
+const Weather = ({index}) => {
   const state = useLocation()
   const weather = useWeather(state)
 
@@ -55,7 +56,11 @@ const Weather = () => {
           )}
         </div>
       }
+      index={index}
     />
   )
+}
+Weather.propTypes = {
+  index: PropTypes.number
 }
 export default Weather

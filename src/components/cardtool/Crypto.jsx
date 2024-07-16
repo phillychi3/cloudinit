@@ -33,6 +33,7 @@ const Crypto = ({ index }) => {
         )
       }
       color={color}
+      index={index}
     />
   )
 }

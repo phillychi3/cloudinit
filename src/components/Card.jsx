@@ -4,12 +4,11 @@ import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
 
-const Card = ({ element, color }) => {
+const Card = ({ element, color,index }) => {
   const [backgroundColor, setBackgroundColor] = useState('#ecf0f1')
   const [ishover, setIshover] = useState(false)
   const [opencardsetting, setcardopen] = useState(false)
-
-
+  const Cardsetting = index ? JSON.parse(localStorage.getItem('setting')).cards[index] : null
   const Style = {
     content: {
       inset: '50% auto auto 50%',
@@ -62,6 +61,33 @@ const Card = ({ element, color }) => {
         style={Style}
       >
         <div className="setting">
+          {
+            Cardsetting ? (
+              <div>
+                {Object.entries(Cardsetting).map(([key, value]) => (
+                  key != 'name' ?
+                  <div key={key}>
+                    <p>{key}</p>
+                    <input
+                      type="text"
+                      value={value}
+                      onChange={
+                        (e) => {
+                          const newsetting = JSON.parse(localStorage.getItem('setting'))
+                          newsetting.cards[index][key] = e.target.value
+                          localStorage.setItem('setting', JSON.stringify(newsetting))
+                          window.dispatchEvent(
+                            new StorageEvent('storage', { key: 'card', ...newsetting.cards })
+                          )
+                      }
+                    }
+                    />
+                  </div>
+                  : null
+                ))}
+              </div>
+            ) : null
+          }
           <button onClick={closeModal}>close</button>
         </div>
       </Modal>
@@ -70,7 +96,8 @@ const Card = ({ element, color }) => {
 }
 Card.propTypes = {
   element: PropTypes.object.isRequired,
-  color: PropTypes.string
+  color: PropTypes.string,
+  index: PropTypes.number
 }
 
 export default Card
