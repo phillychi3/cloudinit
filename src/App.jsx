@@ -27,7 +27,6 @@ function App() {
     store.subscribe,
     store.getSnapshot
   )
-  console.log(storecard)
 
   return (
     <>

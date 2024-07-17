@@ -36,7 +36,6 @@ const Card = ({ element, color, index }) => {
 
   function SaveSetting() {
     const newsetting = JSON.parse((localStorage.getItem('setting')))
-    console.log(newsetting);
     newsetting.cards[index] = Setting.cards[index]
     localStorage.setItem('setting', JSON.stringify(newsetting))
     window.dispatchEvent(

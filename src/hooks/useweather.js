@@ -1,7 +1,5 @@
 import React from 'react'
 
-const forecast = `https://api.openweathermap.org/data/2.5/forecast?lat=23.701156&lon=120.5405259&units=metric&appid=ffd9818a303f06784b81bc37127cf92c`
-const weather = `https://api.openweathermap.org/data/2.5/weather?lat=23.701156&lon=120.5405259&units=metric&appid=ffd9818a303f06784b81bc37127cf92c#`
 
 //將資料分成一天
 //一天內的最高與最低溫紀錄下來
@@ -48,7 +46,6 @@ export default function useWeather(location) {
   }
   React.useEffect(() => {
     const success = (forecast, weather) => {
-      console.log(forecast, weather)
       if (
         forecast.cod.toString() !== '200' ||
         weather.cod.toString() !== '200'
@@ -84,6 +81,8 @@ export default function useWeather(location) {
       }))
     }
     if (!location.loading && !location.error) {
+      const forecast = `https://api.openweathermap.org/data/2.5/forecast?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=ffd9818a303f06784b81bc37127cf92c`
+      const weather = `https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&units=metric&appid=ffd9818a303f06784b81bc37127cf92c#`
       Promise.all([fetch(forecast), fetch(weather)])
         .then(([res1, res2]) => {
           return Promise.all([res1.json(), res2.json()])
