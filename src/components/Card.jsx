@@ -4,11 +4,14 @@ import Modal from 'react-modal'
 
 Modal.setAppElement('#root')
 
-const Card = ({ element, color,index }) => {
+const Card = ({ element, color, index }) => {
   const [backgroundColor, setBackgroundColor] = useState('#ecf0f1')
   const [ishover, setIshover] = useState(false)
   const [opencardsetting, setcardopen] = useState(false)
-  const Cardsetting = index ? JSON.parse(localStorage.getItem('setting')).cards[index] : null
+  const [Setting, setSetting] = useState(() => {
+    const savedSetting = localStorage.getItem('setting')
+    return savedSetting ? JSON.parse(savedSetting) : null
+  })
   const Style = {
     content: {
       inset: '50% auto auto 50%',
@@ -30,6 +33,25 @@ const Card = ({ element, color,index }) => {
   function closeModal() {
     setcardopen(false)
   }
+
+  function SaveSetting() {
+    const newsetting = JSON.parse((localStorage.getItem('setting')))
+    console.log(newsetting);
+    newsetting.cards[index] = Setting.cards[index]
+    localStorage.setItem('setting', JSON.stringify(newsetting))
+    window.dispatchEvent(
+      new StorageEvent('storage', { key: 'card', ...Setting.cards })
+    )
+  }
+
+  const handleInputChange = (key, value) => {
+    setSetting((prev) => {
+      const newSetting = { ...prev }
+      newSetting.cards[index][key] = value
+      return newSetting
+    })
+  }
+
 
   useEffect(() => {
     if (color) {
@@ -55,39 +77,25 @@ const Card = ({ element, color,index }) => {
         )}
         <div className="card-content">{element}</div>
       </div>
-      <Modal
-        isOpen={opencardsetting}
-        onRequestClose={closeModal}
-        style={Style}
-      >
+      <Modal isOpen={opencardsetting} onRequestClose={closeModal} style={Style}>
         <div className="setting">
-          {
-            Cardsetting ? (
-              <div>
-                {Object.entries(Cardsetting).map(([key, value]) => (
-                  key != 'name' ?
+          {Setting && Setting.cards && Setting.cards[index] ? (
+            <div>
+              {Object.entries(Setting.cards[index]).map(([key, value]) =>
+                key !== 'name' ? (
                   <div key={key}>
                     <p>{key}</p>
                     <input
                       type="text"
                       value={value}
-                      onChange={
-                        (e) => {
-                          const newsetting = JSON.parse(localStorage.getItem('setting'))
-                          newsetting.cards[index][key] = e.target.value
-                          localStorage.setItem('setting', JSON.stringify(newsetting))
-                          window.dispatchEvent(
-                            new StorageEvent('storage', { key: 'card', ...newsetting.cards })
-                          )
-                      }
-                    }
+                      onChange={(e) => handleInputChange(key, e.target.value)}
                     />
                   </div>
-                  : null
-                ))}
-              </div>
-            ) : null
-          }
+                ) : null
+              )}
+            </div>
+          ) : null}
+          <button onClick={SaveSetting}>save</button>
           <button onClick={closeModal}>close</button>
         </div>
       </Modal>
