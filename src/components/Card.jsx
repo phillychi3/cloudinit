@@ -43,6 +43,15 @@ const Card = ({ element, color, index }) => {
     )
   }
 
+  function deletecard() {
+    const newsetting = JSON.parse((localStorage.getItem('setting')))
+    newsetting.cards.splice(index, 1)
+    localStorage.setItem('setting', JSON.stringify(newsetting))
+    window.dispatchEvent(
+      new StorageEvent('storage', { key: 'card', ...Setting.cards })
+    )
+  }
+
   const handleInputChange = (key, value) => {
     setSetting((prev) => {
       const newSetting = { ...prev }
@@ -96,6 +105,7 @@ const Card = ({ element, color, index }) => {
           ) : null}
           <button onClick={SaveSetting}>save</button>
           <button onClick={closeModal}>close</button>
+          <button onClick={deletecard}>delete</button>
         </div>
       </Modal>
     </>

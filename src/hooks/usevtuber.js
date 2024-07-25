@@ -52,7 +52,6 @@ export default function useVtuber() {
         return res.json()
       })
       .then((vtuberdata) => {
-        console.log(vtuberdata)
         success(vtuberdata)
       })
       .catch(error)

@@ -4,12 +4,10 @@ const Search = () => {
   const [search, setSearch] = useState('')
 
   const getinput = (thing) => {
-    console.log(thing.target.value)
     setSearch(thing.target.value)
   }
   const getenter = (thing) => {
     if (thing.key === 'Enter') {
-      console.log('Enter')
       window.location.href = 'https://www.google.com/search?q=' + search
     }
   }
