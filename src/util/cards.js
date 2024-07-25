@@ -1,6 +1,7 @@
 import Time from '../components/cardtool/Time'
 import Weather from '../components/cardtool/Weather'
 import Crypto from '../components/cardtool/Crypto'
+import Vtuber from '../components/cardtool/Vtuber'
 
 const Cards = {
   time: {
@@ -15,6 +16,10 @@ const Cards = {
     name: 'crypto',
     coin: 'btcusdt',
     func: Crypto
+  },
+  vtuber: {
+    name: 'vtuber',
+    func: Vtuber
   }
 }
 
