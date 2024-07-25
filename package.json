@@ -10,7 +10,7 @@
     "prettier": "prettier --write .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "depoly": "gh-pages -d dist"
   },
   "homepage": "https://phillychi3.github.io/cloudinit",
   "dependencies": {
