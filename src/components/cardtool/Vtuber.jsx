@@ -3,24 +3,36 @@ import Card from '../Card'
 import PropTypes from 'prop-types'
 import useVtuber from '../../hooks/usevtuber'
 
-const VtuberCard = ( data ) => {
+const VtuberCard = (data) => {
   return (
     <div className="vtuber-card">
       {Object.entries(data.vtuberdata).map(([index, vtuber]) => (
         <div key={index} className="vtuber-item">
-          <a href={vtuber.link} target="_blank" rel="noreferrer" className="thumbnail-link">
-            <img src={vtuber.picture} alt={vtuber.title} className="thumbnail"/>
-            <span className={`status-badge ${vtuber.islive ? 'live' : 'ready'}`}>
+          <a
+            href={vtuber.link}
+            target="_blank"
+            rel="noreferrer"
+            className="thumbnail-link"
+          >
+            <img
+              src={vtuber.picture}
+              alt={vtuber.title}
+              className="thumbnail"
+            />
+            <span
+              className={`status-badge ${vtuber.islive ? 'live' : 'ready'}`}
+            >
               {vtuber.islive ? 'LIVE' : 'Ready'}
             </span>
           </a>
           <div className="vtuber-info">
             <h3 className="stream-title">{vtuber.title}</h3>
-            <p className="stream-meta">
-              {new Date(vtuber.timestamp * 1000).toLocaleDateString()}
-              {' '}
-              {new Date(vtuber.timestamp * 1000).toLocaleTimeString()}
-            </p>
+            {vtuber.islive ? null : (
+              <p className="stream-meta">
+                {new Date(vtuber.timestamp * 1000).toLocaleDateString()}{' '}
+                {new Date(vtuber.timestamp * 1000).toLocaleTimeString()}
+              </p>
+            )}
           </div>
         </div>
       ))}
@@ -28,7 +40,7 @@ const VtuberCard = ( data ) => {
   )
 }
 
-const Vtuber = ({index}) => {
+const Vtuber = ({ index }) => {
   const vtuber = useVtuber()
   return (
     <Card

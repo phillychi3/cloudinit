@@ -10,9 +10,9 @@ export default function useVtuber() {
     const threeDaysAgo = Date.now() + 3 * 24 * 60 * 60 * 1000
     let newdata = data.filter(
       (item) =>
-        item.timestamp != null ||
-        (item.islive === true &&
-          new Date(item.timestamp).getTime() >= threeDaysAgo)
+        (item.timestamp != null &&
+          new Date(item.timestamp).getTime() <= threeDaysAgo) ||
+        item.islive === true
     )
     newdata = newdata.sort((a, b) => {
       return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime()
